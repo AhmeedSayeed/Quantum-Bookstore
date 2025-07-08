@@ -9,4 +9,8 @@ public class PaperBook extends Book {
     public int getStock() {
         return stock;
     }
+
+    public void reduceStock(int quantity) {
+        this.stock -= quantity;
+    }
 }
