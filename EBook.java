@@ -12,9 +12,9 @@ public class EBook extends Book {
 
     @Override
     public void printDetails() {
-        System.out.println("---------- Book ---------");
+        System.out.println("Quantum book store - ---------- Book ---------");
         super.printDetails();
-        System.out.println("File Type: " + fileType);
-        System.out.println("-------------------------");
+        System.out.println("Quantum book store - File Type: " + fileType);
+        System.out.println("Quantum book store - -------------------------");
     }
 }

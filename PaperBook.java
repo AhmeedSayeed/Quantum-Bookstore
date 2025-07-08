@@ -15,9 +15,9 @@ public class PaperBook extends Book {
     }
 
     public void printDetails() {
-        System.out.println("---------- Book ---------");
+        System.out.println("Quantum book store - ---------- Book ---------");
         super.printDetails();
-        System.out.println("Available Stock: " + stock + " Book" + (stock > 1 ? "s" : ""));
-        System.out.println("-------------------------");
+        System.out.println("Quantum book store - Available Stock: " + stock + " Book" + (stock > 1 ? "s" : ""));
+        System.out.println("Quantum book store - -------------------------");
     }
 }

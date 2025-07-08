@@ -43,13 +43,13 @@ public class Inventory {
      */
     public PurchaseResult buyBook(String isbn, int quantity, String email, String address) {
         if(quantity <= 0) {
-            throw new IllegalArgumentException("Quantity must be greater than 0.");
+            throw new IllegalArgumentException("Quantum book store - Quantity must be greater than 0.");
         }
 
         for(Book book : books){
             if(book.getIsbn().equals(isbn)){
                 if(!book.isForSale()) {
-                    throw new IllegalArgumentException("Book with ISBN " + isbn + " is not for sale.");
+                    throw new IllegalArgumentException("Quantum book store - Book with ISBN " + isbn + " is not for sale.");
                 }
 
                 // Only apply quantity to PaperBook, as EBooks are digital and don't depend on quantity
@@ -58,7 +58,7 @@ public class Inventory {
 
                 if(book instanceof PaperBook pb) {
                     if(quantity > pb.getStock()) {
-                        throw new IllegalArgumentException("Not enough stock for book with ISBN: " + isbn);
+                        throw new IllegalArgumentException("Quantum book store - Not enough stock for book with ISBN: " + isbn);
                     }
 
                     pb.reduceStock(quantity);
@@ -72,6 +72,6 @@ public class Inventory {
             }
         }
 
-        throw new IllegalArgumentException("Book with ISBN " + isbn + " not found.");
+        throw new IllegalArgumentException("Quantum book store - Book with ISBN " + isbn + " not found.");
     }
 }

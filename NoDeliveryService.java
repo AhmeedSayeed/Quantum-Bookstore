@@ -11,6 +11,6 @@
 public class NoDeliveryService implements DeliveryService {
     @Override
     public String deliver(Book book, String destination) {
-        return "Quantum book store - '" + book.title + "' is not for Sale.";
+        return "Quantum book store - " + book.title + " is not for Sale.";
     }
 }

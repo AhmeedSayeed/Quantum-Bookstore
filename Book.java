@@ -20,11 +20,11 @@ public abstract class Book {
         this.title = title;
         this.author = author;
         if(publicationYear > Year.now().getValue()) {
-            throw new IllegalArgumentException("Publication year is greater than Year now.");
+            throw new IllegalArgumentException("Quantum book store - Publication year is greater than Year now.");
         }
         this.publicationYear = publicationYear;
         if(price < 0) {
-            throw new IllegalArgumentException("Price is negative.");
+            throw new IllegalArgumentException("Quantum book store - Price is negative.");
         }
         this.price = price;
         this.deliveryService = deliveryService;
@@ -59,14 +59,14 @@ public abstract class Book {
     }
 
     public void printDetails() {
-        System.out.println("ISBN: " + isbn);
-        System.out.println("Title: " + title);
-        System.out.println("Author: " + author);
-        System.out.println("Publication year: " + publicationYear);
+        System.out.println("Quantum book store - ISBN: " + isbn);
+        System.out.println("Quantum book store - Title: " + title);
+        System.out.println("Quantum book store - Author: " + author);
+        System.out.println("Quantum book store - Publication year: " + publicationYear);
         if(price > 0.0){
-            System.out.println("Price: " + price);
+            System.out.println("Quantum book store - Price: " + price);
         } else {
-            System.out.println("Not for sale.");
+            System.out.println("Quantum book store - Not for sale.");
         }
     }
 }

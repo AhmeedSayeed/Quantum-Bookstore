@@ -10,8 +10,8 @@ public class DemoBook extends Book {
 
     @Override
     public void printDetails() {
-        System.out.println("---------- Book ---------");
+        System.out.println("Quantum book store - ---------- Book ---------");
         super.printDetails();
-        System.out.println("-------------------------");
+        System.out.println("Quantum book store - -------------------------");
     }
 }
