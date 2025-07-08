@@ -1,14 +1,13 @@
-import java.util.ArrayList;
 import java.util.List;
 
-public class OnlineBookStoreTest {
+public class QuantumBookstoreFullTest {
     public static void main(String[] args) {
         Inventory inventory = new Inventory();
 
         // Add books
-        inventory.addBook(new PaperBook("111", "Clean Code", 2008, 300, 5));
-        inventory.addBook(new EBook("222", "Design Patterns", 2012, 150, "PDF"));
-        inventory.addBook(new DemoBook("333", "Quantum Book Demo", 2024));
+        inventory.addBook(new PaperBook("111", "Clean Code", "Robert C. Martin", 2008, 300, 5));
+        inventory.addBook(new EBook("222", "Design Patterns", "Erich Gamma", 2012, 150, "PDF"));
+        inventory.addBook(new DemoBook("333", "Quantum Book Demo", "Venkat Subramaniam", 2024));
 
         // List books
         System.out.println("===== Inventory List =====");
@@ -84,6 +83,5 @@ public class OnlineBookStoreTest {
                 System.out.println("- " + book.getTitle() + " (" + book.getPublicationYear() + ")");
             }
         }
-
     }
 }

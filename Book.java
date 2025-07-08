@@ -10,13 +10,15 @@ import java.time.Year;
 public abstract class Book {
     protected String isbn;
     protected String title;
+    protected String author;
     protected int publicationYear;
     protected float price;
     protected DeliveryService deliveryService;
 
-    public Book(String isbn, String title, int publicationYear, float price,  DeliveryService deliveryService) {
+    public Book(String isbn, String title, String author, int publicationYear, float price,  DeliveryService deliveryService) {
         this.isbn = isbn;
         this.title = title;
+        this.author = author;
         if(publicationYear > Year.now().getValue()) {
             throw new IllegalArgumentException("Publication year is greater than Year now.");
         }
@@ -57,15 +59,14 @@ public abstract class Book {
     }
 
     public void printDetails() {
-        System.out.println("---------- Book ---------");
         System.out.println("ISBN: " + isbn);
         System.out.println("Title: " + title);
+        System.out.println("Author: " + author);
         System.out.println("Publication year: " + publicationYear);
         if(price > 0.0){
             System.out.println("Price: " + price);
         } else {
             System.out.println("Not for sale.");
         }
-        System.out.println("-------------------------");
     }
 }

@@ -1,8 +1,8 @@
 public class EBook extends Book {
     private String fileType;
 
-    public EBook(String isbn, String title, int publicationYear, float price, String fileType) {
-        super(isbn, title, publicationYear, price, new MailService());
+    public EBook(String isbn, String title, String author, int publicationYear, float price, String fileType) {
+        super(isbn, title, author, publicationYear, price, new MailService());
         this.fileType = fileType;
     }
 
@@ -13,15 +13,8 @@ public class EBook extends Book {
     @Override
     public void printDetails() {
         System.out.println("---------- Book ---------");
-        System.out.println("ISBN: " + isbn);
-        System.out.println("Title: " + title);
-        System.out.println("Publication year: " + publicationYear);
+        super.printDetails();
         System.out.println("File Type: " + fileType);
-        if(price > 0.0){
-            System.out.println("Price: " + price);
-        } else {
-            System.out.println("Not for sale.");
-        }
         System.out.println("-------------------------");
     }
 }
