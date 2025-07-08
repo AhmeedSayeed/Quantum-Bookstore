@@ -47,4 +47,17 @@ public abstract class Book {
     public void deliver(String destination) {
         deliveryService.deliver(this, destination);
     }
+
+    public void printDetails() {
+        System.out.println("------- Book ------");
+        System.out.println("ISBN: " + isbn);
+        System.out.println("Title: " + title);
+        System.out.println("Publication year: " + publicationYear);
+        if(price > 0.0){
+            System.out.println("Price: " + price);
+        } else {
+            System.out.println("Not for sale.");
+        }
+        System.out.println("-------------------");
+    }
 }
