@@ -8,13 +8,10 @@ public class Inventory {
     private List<Book> books = new ArrayList<>();
 
     public void listBooks() {
-        System.out.println("Books in Inventory:");
-        System.out.println();
         for (Book book : books) {
             book.printDetails();
             System.out.println();
         }
-        System.out.println("--------------------------");
     }
 
     public void addBook(Book book) {
@@ -28,7 +25,7 @@ public class Inventory {
 
         while (iterator.hasNext()) {
             Book book = iterator.next();
-            if(currentYear - book.getPublicationYear() >  currentYear) {
+            if(currentYear - book.getPublicationYear() >  years) {
                 outdatedBooks.add(book);
                 iterator.remove();
             }
@@ -37,7 +34,14 @@ public class Inventory {
         return outdatedBooks;
     }
 
-    public float buyBook(String isbn, int quantity, String email, String address) {
+    /*
+        First, i make the delivery methods prints a message to know it will be delivered but,
+        i used a result object (PurchaseResult) instead of returning a primitive value.
+        This helps separate business logic from output handling (e.g., printing),
+        making the method reusable in different contexts such as CLI, GUI, or API layers
+        without being tied to specific presentation behavior.
+     */
+    public PurchaseResult buyBook(String isbn, int quantity, String email, String address) {
         if(quantity <= 0) {
             throw new IllegalArgumentException("Quantity must be greater than 0.");
         }
@@ -49,6 +53,7 @@ public class Inventory {
                 }
 
                 float paidAmount = book.getPrice() * quantity;
+                String deliveryMessage = "";
 
                 if(book instanceof PaperBook pb) {
                     if(quantity > pb.getStock()) {
@@ -56,12 +61,13 @@ public class Inventory {
                     }
 
                     pb.reduceStock(quantity);
-                    pb.deliver(address);
+                    deliveryMessage = pb.deliver(address);
                 } else if(book instanceof EBook eb) {
-                    eb.deliver(email);
+                    deliveryMessage = eb.deliver(email);
                 }
 
-                return paidAmount;
+                PurchaseResult purchaseResult = new PurchaseResult(paidAmount,  deliveryMessage);
+                return purchaseResult;
             }
         }
 

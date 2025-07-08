@@ -10,7 +10,7 @@
 
 public class NoDeliveryService implements DeliveryService {
     @Override
-    public void deliver(Book book, String destination) {
-        System.out.println("Quantum book store - '" + book.title + "' is not for Sale.");
+    public String deliver(Book book, String destination) {
+        return "Quantum book store - '" + book.title + "' is not for Sale.";
     }
 }

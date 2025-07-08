@@ -44,12 +44,12 @@ public abstract class Book {
         return true; // will be overwritten in Demo Book
     }
 
-    public void deliver(String destination) {
-        deliveryService.deliver(this, destination);
+    public String deliver(String destination) {
+        return deliveryService.deliver(this, destination);
     }
 
     public void printDetails() {
-        System.out.println("------- Book ------");
+        System.out.println("---------- Book ---------");
         System.out.println("ISBN: " + isbn);
         System.out.println("Title: " + title);
         System.out.println("Publication year: " + publicationYear);
@@ -58,6 +58,6 @@ public abstract class Book {
         } else {
             System.out.println("Not for sale.");
         }
-        System.out.println("-------------------");
+        System.out.println("-------------------------");
     }
 }

@@ -4,5 +4,5 @@
  */
 
 public interface DeliveryService {
-    public void deliver(Book book, String destination);
+    public String deliver(Book book, String destination);
 }
