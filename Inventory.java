@@ -52,7 +52,8 @@ public class Inventory {
                     throw new IllegalArgumentException("Book with ISBN " + isbn + " is not for sale.");
                 }
 
-                float paidAmount = book.getPrice() * quantity;
+                // Only apply quantity to PaperBook, as EBooks are digital and don't depend on quantity
+                float paidAmount = book.getPrice() * ((book instanceof PaperBook) ? quantity : 1);
                 String deliveryMessage = "";
 
                 if(book instanceof PaperBook pb) {

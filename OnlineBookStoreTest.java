@@ -28,7 +28,7 @@ public class OnlineBookStoreTest {
         System.out.println();
 
         try {
-            PurchaseResult result = inventory.buyBook("222", 1, "user@example.com", "Not needed");
+            PurchaseResult result = inventory.buyBook("222", 2, "user@example.com", "Not needed");
             System.out.println("Bought Design Patterns (EBook). Paid: " + result.getPaidAmount());
             System.out.println(result.getDeliveryMessage());
         } catch (Exception e) {
@@ -46,7 +46,7 @@ public class OnlineBookStoreTest {
         System.out.println();
 
         try {
-            PurchaseResult result = inventory.buyBook("111", 10, "user@example.com", "Cairo");
+            PurchaseResult result = inventory.buyBook("111", 4, "user@example.com", "Cairo");
         } catch (Exception e) {
             System.out.println("Expected error (not enough stock): " + e.getMessage());
         }
