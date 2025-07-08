@@ -6,5 +6,45 @@
  */
 
 public abstract class Book {
+    protected String isbn;
+    protected String title;
+    protected int publicationYear;
+    protected float price;
+    protected DeliveryService deliveryService;
 
+    public Book(String isbn, String title, int publicationYear, float price,  DeliveryService deliveryService) {
+        this.isbn = isbn;
+        this.title = title;
+        this.publicationYear = publicationYear;
+        this.price = price;
+        this.deliveryService = deliveryService;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public int getPublicationYear() {
+        return publicationYear;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public DeliveryService getDeliveryService() {
+        return deliveryService;
+    }
+
+    public boolean isForSale() {
+        return true; // will be overwritten in Demo Book
+    }
+
+    public void deliver(String destination) {
+        deliveryService.deliver(this, destination);
+    }
 }
