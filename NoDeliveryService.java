@@ -1,4 +1,6 @@
-package PACKAGE_NAME;
+public class NoDeliveryService implements DeliveryService {
+    @Override
+    public void deliver() {
 
-public class NoDeliveryService {
+    }
 }
