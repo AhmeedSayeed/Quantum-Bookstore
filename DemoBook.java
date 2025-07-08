@@ -1,6 +1,6 @@
 public class DemoBook extends Book {
-    public DemoBook(String isbn, String title, int publicationYear, float price) {
-        super(isbn, title, publicationYear, price, new NoDeliveryService());
+    public DemoBook(String isbn, String title, int publicationYear) {
+        super(isbn, title, publicationYear, 0, new NoDeliveryService());
     }
 
     @Override
