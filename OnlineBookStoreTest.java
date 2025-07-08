@@ -18,8 +18,8 @@ public class OnlineBookStoreTest {
         System.out.println("===== Buy Tests =====");
 
         try {
-            PurchaseResult result = inventory.buyBook("111", 2, "user@example.com", "Cairo, Egypt");
-            System.out.println("Bought 2 x Clean Code. Paid: " + result.getPaidAmount());
+            PurchaseResult result = inventory.buyBook("111", 3, "user@example.com", "Cairo, Egypt");
+            System.out.println("Bought 3 x Clean Code. Paid: " + result.getPaidAmount());
             System.out.println(result.getDeliveryMessage());
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
@@ -28,7 +28,7 @@ public class OnlineBookStoreTest {
         System.out.println();
 
         try {
-            PurchaseResult result = inventory.buyBook("222", 2, "user@example.com", "Not needed");
+            PurchaseResult result = inventory.buyBook("222", 1, "user@example.com", "Not needed");
             System.out.println("Bought Design Patterns (EBook). Paid: " + result.getPaidAmount());
             System.out.println(result.getDeliveryMessage());
         } catch (Exception e) {
@@ -47,6 +47,8 @@ public class OnlineBookStoreTest {
 
         try {
             PurchaseResult result = inventory.buyBook("111", 4, "user@example.com", "Cairo");
+            System.out.println("Bought 4 x Clean Code. Paid: " + result.getPaidAmount());
+            System.out.println(result.getDeliveryMessage());
         } catch (Exception e) {
             System.out.println("Expected error (not enough stock): " + e.getMessage());
         }
@@ -63,13 +65,15 @@ public class OnlineBookStoreTest {
 
         try {
             PurchaseResult result = inventory.buyBook("111", 0, "user@example.com", "Cairo");
+            System.out.println("Bought 0 x Clean Code. Paid: " + result.getPaidAmount());
+            System.out.println(result.getDeliveryMessage());
         } catch (Exception e) {
             System.out.println("Expected error (invalid quantity): " + e.getMessage());
         }
 
         System.out.println();
 
-        System.out.println("===== Remove Outdated Books Test =====");
+        System.out.println("===== Remove Outdated Books =====");
         List<Book> removed = inventory.removeOutdatedBooks(10); // remove books older than 10 years
 
         if (removed.isEmpty()) {

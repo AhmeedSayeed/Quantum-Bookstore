@@ -5,6 +5,8 @@
     concrete implementations in Delivery Service.
  */
 
+import java.time.Year;
+
 public abstract class Book {
     protected String isbn;
     protected String title;
@@ -15,7 +17,13 @@ public abstract class Book {
     public Book(String isbn, String title, int publicationYear, float price,  DeliveryService deliveryService) {
         this.isbn = isbn;
         this.title = title;
+        if(publicationYear > Year.now().getValue()) {
+            throw new IllegalArgumentException("Publication year is greater than Year now.");
+        }
         this.publicationYear = publicationYear;
+        if(price < 0) {
+            throw new IllegalArgumentException("Price is negative.");
+        }
         this.price = price;
         this.deliveryService = deliveryService;
     }
