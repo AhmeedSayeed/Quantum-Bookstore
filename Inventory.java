@@ -2,10 +2,12 @@ import java.time.Year;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
+import java.util.HashMap;
+import java.util.Map;
 
 public class Inventory {
     private List<Book> books = new ArrayList<>();
+    private Map<String, Book> bookMap = new HashMap<>();
 
     public void listBooks() {
         for (Book book : books) {
@@ -16,6 +18,7 @@ public class Inventory {
 
     public void addBook(Book book) {
         books.add(book);
+        bookMap.put(book.getIsbn(), book);
     }
 
     public List<Book> removeOutdatedBooks(int years) {
@@ -25,9 +28,10 @@ public class Inventory {
 
         while (iterator.hasNext()) {
             Book book = iterator.next();
-            if(currentYear - book.getPublicationYear() >  years) {
+            if (currentYear - book.getPublicationYear() > years) {
                 outdatedBooks.add(book);
                 iterator.remove();
+                bookMap.remove(book.getIsbn());
             }
         }
 
@@ -42,36 +46,34 @@ public class Inventory {
         without being tied to specific presentation behavior.
      */
     public PurchaseResult buyBook(String isbn, int quantity, String email, String address) {
-        if(quantity <= 0) {
+        if (quantity <= 0) {
             throw new IllegalArgumentException("Quantum book store - Quantity must be greater than 0.");
         }
 
-        for(Book book : books){
-            if(book.getIsbn().equals(isbn)){
-                if(!book.isForSale()) {
-                    throw new IllegalArgumentException("Quantum book store - Book with ISBN " + isbn + " is not for sale.");
-                }
-
-                // Only apply quantity to PaperBook, as EBooks are digital and don't depend on quantity
-                float paidAmount = book.getPrice() * ((book instanceof PaperBook) ? quantity : 1);
-                String deliveryMessage = "";
-
-                if(book instanceof PaperBook pb) {
-                    if(quantity > pb.getStock()) {
-                        throw new IllegalArgumentException("Quantum book store - Not enough stock for book with ISBN: " + isbn);
-                    }
-
-                    pb.reduceStock(quantity);
-                    deliveryMessage = pb.deliver(address);
-                } else if(book instanceof EBook eb) {
-                    deliveryMessage = eb.deliver(email);
-                }
-
-                PurchaseResult purchaseResult = new PurchaseResult(paidAmount,  deliveryMessage);
-                return purchaseResult;
-            }
+        if (!bookMap.containsKey(isbn)) {
+            throw new IllegalArgumentException("Quantum book store - Book with ISBN " + isbn + " not found.");
         }
 
-        throw new IllegalArgumentException("Quantum book store - Book with ISBN " + isbn + " not found.");
+        Book book = bookMap.get(isbn);
+
+        if (!book.isForSale()) {
+            throw new IllegalArgumentException("Quantum book store - Book with ISBN " + isbn + " is not for sale.");
+        }
+
+        float paidAmount = book.getPrice() * ((book instanceof PaperBook) ? quantity : 1);
+        String deliveryMessage = "";
+
+        if (book instanceof PaperBook pb) {
+            if (quantity > pb.getStock()) {
+                throw new IllegalArgumentException("Quantum book store - Not enough stock for book with ISBN: " + isbn);
+            }
+
+            pb.reduceStock(quantity);
+            deliveryMessage = pb.deliver(address);
+        } else if (book instanceof EBook eb) {
+            deliveryMessage = eb.deliver(email);
+        }
+
+        return new PurchaseResult(paidAmount, deliveryMessage);
     }
 }
