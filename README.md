@@ -29,3 +29,11 @@ All print statements in this project are prefixed with **Quantum book store**.
 
 ---
 
+## Screen shots for running app
+
+![First Screen](Screen%20shots%20of%20running%20app/Screenshot%202025-07-08%20215434.png)
+
+![Second Screen](Screen%20shots%20of%20running%20app/Screenshot%202025-07-08%20215445.png)
+
+---
+
